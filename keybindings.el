@@ -3,11 +3,17 @@
 ;; File that sets up my custom keybindings for emacs
 ;;
 
-;; switch to previous buffer
-(global-set-key (kbd "C-x p") 'switch-to-previous-buffer)
-;; Open previous buffer on right
+;; switch to last used buffer
+(global-set-key (kbd "C-x p") 'switch-to-last-buffer)
+;; Open previous buffer on right or below
 (global-set-key (kbd "C-x 2") 'open-prev-buffer-below)
 (global-set-key (kbd "C-x 3") 'open-prev-buffer-on-right)
+;; Open shell on right or below
+(global-set-key (kbd "C-c C-x 2") 'open-shell-below)
+(global-set-key (kbd "C-c C-x 3") 'open-shell-on-right)
+
+
+
 
 
 ;; make ibuffer default for buffer change
@@ -34,7 +40,6 @@
 (global-set-key (kbd "C-=") 'er/expand-region)
 
 
-
 ;; Webjump
 ;; ------------------------------
 (global-set-key (kbd "C-c j") 'webjump)
@@ -43,10 +48,6 @@
 ;; ------------------------------
 (global-set-key (kbd "C-c C-.") 'yank-on-right)
 
-
-;; Toggle mini emacs
-;; ------------------------------
-(global-set-key (kbd "C-c C-,") 'toggle-mini-emacs)
 
 ;; For each occurence
 ;; ------------------------------
@@ -59,9 +60,6 @@
 
 ;; smex - Smart M-x
 (global-set-key (kbd "M-x") 'smex)
-;; For each - incremental block copying
-;; ------------------------------
-(global-set-key (kbd "C-c i") 'for-each)
 
 ;; kills current buffer and deletes file
 ;; ------------------------------
@@ -83,7 +81,7 @@
 (global-set-key (kbd "M-j")
 		(lambda ()
 		  (interactive)
-		  (join-line -1)))
+                  (join-line -1)))
 
 
 ;; Setup hotkeys for splitpane docview

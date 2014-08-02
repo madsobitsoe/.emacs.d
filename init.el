@@ -27,7 +27,7 @@
 ;; Set up load path
 (add-to-list 'load-path user-emacs-directory)
 (add-to-list 'load-path (concat user-emacs-directory "elpa/dash-20140717.547"))
-
+(add-to-list 'load-path (concat user-emacs-directory "elpa/rainbow-delimiters-20140713.1131"))
 ;; Keep emacs Custom-settings in separate file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)

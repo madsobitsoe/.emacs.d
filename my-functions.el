@@ -70,8 +70,23 @@ Replaces a regexp placeholder with a list of numbers incremented in steps"
   (split-window-vertically)
   (other-window 1 nil)
   (switch-to-next-buffer))
-  
 
+;; Open shell in new window on right
+(defun open-shell-on-right ()
+  (interactive)
+  (split-window-horizontally)
+  (other-window 1 nil)
+  (eshell))
 
+(defun open-shell-below ()
+  (interactive)
+  (split-window-vertically)
+  (other-window 1 nil)
+  (eshell))
+
+(defun switch-to-last-buffer ()
+  (interactive)
+  (switch-to-buffer (other-buffer)))
 
 (provide 'my-functions)
+
