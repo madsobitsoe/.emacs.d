@@ -120,6 +120,10 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20140618.2217/dict")
 (ac-config-default)
 
+;; Add emacs eclim source
+(require 'ac-emacs-eclim-source)
+(ac-emacs-eclim-config)
+
 
 ;; Setup multiple-cursors
 ;; ------------------------------
@@ -163,6 +167,27 @@
 ;; ------------------------------
 (require 'undo-tree)
 (global-undo-tree-mode)
+
+
+;; Setup eclim
+;; ------------------------------
+;; Major mode for interacting with eclipse and snatching the nice features
+;; 
+
+(require 'eclim)
+(global-eclim-mode)
+(require 'eclimd)
+(setq eclimd-default-workspace "~/Documents/KEA/Programmering/2.semester/")
+
+
+
+;; Setup helm-spotify-custom
+(require 'helm-spotify-custom)
+
+(require 'company)
+(require 'company-emacs-eclim)
+(company-emacs-eclim-setup)
+(global-company-mode t)
 
 ;; Yank-on-right
 ;; -------------

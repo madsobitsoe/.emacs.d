@@ -13,6 +13,17 @@
 (global-set-key (kbd "C-c C-x 3") 'open-shell-on-right)
 
 
+;; Setup rotate windows
+;; Enables to switch buffers around when they open wrong
+;; OCD-curing functionality
+(global-set-key (kbd "C-c C-r") 'rotate-windows)
+
+;; Create newlines mid-sentence both above and below
+(global-set-key (kbd "<C-return>") 'open-line-below)
+(global-set-key (kbd "<C-M-return>") 'open-line-above) 
+
+;; Scroll other buffer upwards
+(global-set-key (kbd "C-M-f")  (lambda () (interactive) (scroll-other-window -36)))
 
 
 
@@ -91,7 +102,9 @@
 (global-set-key (kbd "M-å") 'doc-prev)
 (global-set-key (kbd "M-ø") 'doc-next) 
 
-
+;; Setup moving lines up and down
+(global-set-key (kbd "<M-up>") 'move-line-up)
+(global-set-key (kbd "<M-down>") 'move-line-down)
 
 
 (provide 'keybindings)
