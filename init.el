@@ -38,6 +38,8 @@
 ;; Setup appearance early
 (require 'appearance)
 
+;; Setup Ido
+(require 'setup-ido)
 ;; Setup my custom functions
 (require 'my-functions)
 
