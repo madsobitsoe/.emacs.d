@@ -48,6 +48,34 @@ Replaces a regexp placeholder with a list of numbers incremented in steps"
         (message "File '%s' successfully removed" filename)))))
 
 
+;; Yank-on-right
+;; -------------
+;;
+(defun yank-on-right (start end &optional margin)
+  "Yank the current kill, inserting it to the right of the
+current region.  Rectangle editing can be used to place blocks of
+text in columns alongside each other.  But that usually requires
+finding the longest lines and then padding top or bottom lines to
+match.  This function produces the same effect without the
+hassle."
+  (interactive "r\np")
+  (goto-char start)
+  (end-of-line)
+  (let ((lines (split-string (current-kill 0) "\n"))
+	(width (current-column)))
+    (while (< (point) end)
+      (end-of-line 2)
+      (setq width (max width (current-column))))
+    (setq width (+ margin width))
+    (goto-char start)
+    (push-mark end)
+    (while (and (< (point) (mark)) lines)
+      (move-to-column width t)
+      (insert (car lines))
+      (setq lines (cdr lines))
+      (forward-line))
+    (pop-mark)))
+
 
 ;; indent whole buffer
 ;; ------------------------------
@@ -116,6 +144,7 @@ Replaces a regexp placeholder with a list of numbers incremented in steps"
              (set-window-start w1 s2)
              (set-window-start w2 s1)
              (setq i (1+ i)))))))
+
 (defun rotate-windows ()
   "Rotate your windows"
   (interactive)
@@ -140,8 +169,6 @@ Replaces a regexp placeholder with a list of numbers incremented in steps"
              (set-window-start w1 s2)
              (set-window-start w2 s1)
              (setq i (1+ i)))))))
-
-
 
 ;; Move line down
 (defun move-line-down ()

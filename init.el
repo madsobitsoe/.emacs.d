@@ -19,7 +19,8 @@
 ;; Waste of bytes
 (setq initial-scratch-message 
 ";; Welcome to your domain of evil
-;; The elisp is loose")
+;; The elisp is loose
+")
 
 ;; Straight to *scratch*
 (setq initial-buffer-choice t)
@@ -120,9 +121,12 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20140618.2217/dict")
 (ac-config-default)
 
-;; Add emacs eclim source
-(require 'ac-emacs-eclim-source)
-(ac-emacs-eclim-config)
+
+;; setup some variables for WDIRED
+;; invoke with C-x C-q in any dired buffer
+;; edit stuff, commit with C-c C-C
+(setq wdired-use-interactive-rename t)
+(setq wdired-confirm-overwrite t)
 
 
 ;; Setup multiple-cursors
@@ -169,83 +173,21 @@
 (global-undo-tree-mode)
 
 
-;; Setup eclim
-;; ------------------------------
-;; Major mode for interacting with eclipse and snatching the nice features
-;; 
-
-(require 'eclim)
-(global-eclim-mode)
-(require 'eclimd)
-(setq eclimd-default-workspace "~/Documents/KEA/Programmering/2.semester/")
 
 
 
 ;; Setup helm-spotify-custom
 (require 'helm-spotify-custom)
 
-(require 'company)
-(require 'company-emacs-eclim)
-(company-emacs-eclim-setup)
-(global-company-mode t)
-
-;; Yank-on-right
-;; -------------
-;;
-(defun yank-on-right (start end &optional margin)
-  "Yank the current kill, inserting it to the right of the
-current region.  Rectangle editing can be used to place blocks of
-text in columns alongside each other.  But that usually requires
-finding the longest lines and then padding top or bottom lines to
-match.  This function produces the same effect without the
-hassle."
-  (interactive "r\np")
-  (goto-char start)
-  (end-of-line)
-  (let ((lines (split-string (current-kill 0) "\n"))
-	(width (current-column)))
-    (while (< (point) end)
-      (end-of-line 2)
-      (setq width (max width (current-column))))
-    (setq width (+ margin width))
-    (goto-char start)
-    (push-mark end)
-    (while (and (< (point) (mark)) lines)
-      (move-to-column width t)
-      (insert (car lines))
-      (setq lines (cdr lines))
-      (forward-line))
-    (pop-mark)))
  
-
-
-
-
-
-
-
 (require 'highlight-escape-sequences)
 (hes-mode)
 (put 'font-lock-regexp-grouping-backslash 'face-alias 'font-lock-builtin-face)
 
 
+;; setup eclim
 
-;;  Stuff that doesn't work yet
-;;  ------------------------------
-
-
-;;  Configure eclim
-;; (add-to-list 'load-path "~/.emacs.d/emacs-eclim/");
-;; (require 'eclim)
-;; (global-eclim-mode)
-;; (require 'eclimd)
-;;  Regular auto-complete initialization
-;; (require 'auto-complete-config)
-;; (ac-config-default)
-
-;;  Add the emacs-eclim source
-;; (require 'ac-emacs-eclim-source)
-;; (ac-emacs-eclim-config)
+(eval-after-load 'setup-eclim (require 'eclimd))
 
 
 
