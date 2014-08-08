@@ -70,7 +70,55 @@ Replaces a regexp placeholder with a list of numbers incremented in steps"
   (split-window-vertically)
   (other-window 1 nil)
   (switch-to-next-buffer))
-  
+
+
+
+;; move line up
+(defun move-line-up ()
+  (interactive)
+  (transpose-lines 1)
+  (previous-line 2))
+
+
+
+;; move line down
+(defun move-line-down ()
+  (interactive)
+  (next-line 1)
+  (transpose-lines 1)
+  (previous-line 1))
+
+;; Yank-on-right
+;; -------------
+;;
+(defun yank-on-right (start end &optional margin)
+  "Yank the current kill, inserting it to the right of the
+current region.  Rectangle editing can be used to place blocks of
+text in columns alongside each other.  But that usually requires
+finding the longest lines and then padding top or bottom lines to
+match.  This function produces the same effect without the
+hassle."
+  (interactive "r\np")
+  (goto-char start)
+  (end-of-line)
+  (let ((lines (split-string (current-kill 0) "\n"))
+	(width (current-column)))
+    (while (< (point) end)
+      (end-of-line 2)
+      (setq width (max width (current-column))))
+    (setq width (+ margin width))
+    (goto-char start)
+    (push-mark end)
+    (while (and (< (point) (mark)) lines)
+      (move-to-column width t)
+      (insert (car lines))
+      (setq lines (cdr lines))
+      (forward-line))
+    (pop-mark)))
+
+
+
+
 
 
 

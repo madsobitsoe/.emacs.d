@@ -24,7 +24,7 @@
 ;; Straight to *scratch*
 (setq initial-buffer-choice t)
 
-;; Set up load path
+;; Set up load
 (add-to-list 'load-path user-emacs-directory)
 (add-to-list 'load-path (concat user-emacs-directory "elpa/dash-20140717.547"))
 
@@ -164,33 +164,6 @@
 (require 'undo-tree)
 (global-undo-tree-mode)
 
-;; Yank-on-right
-;; -------------
-;;
-(defun yank-on-right (start end &optional margin)
-  "Yank the current kill, inserting it to the right of the
-current region.  Rectangle editing can be used to place blocks of
-text in columns alongside each other.  But that usually requires
-finding the longest lines and then padding top or bottom lines to
-match.  This function produces the same effect without the
-hassle."
-  (interactive "r\np")
-  (goto-char start)
-  (end-of-line)
-  (let ((lines (split-string (current-kill 0) "\n"))
-	(width (current-column)))
-    (while (< (point) end)
-      (end-of-line 2)
-      (setq width (max width (current-column))))
-    (setq width (+ margin width))
-    (goto-char start)
-    (push-mark end)
-    (while (and (< (point) (mark)) lines)
-      (move-to-column width t)
-      (insert (car lines))
-      (setq lines (cdr lines))
-      (forward-line))
-    (pop-mark)))
  
 
 
@@ -226,9 +199,9 @@ hassle."
 
 ;; Setup doc-view-mode for pdf
 ;; ------------------------------
-(setq doc-view-ghostscript-program "/usr/local/bin/gs")
-(setq doc-view-ghostscript-options (quote ("-dNOPAUSE"
-					   "-sDEVICE=png16m" "-dTextAlphaBits=4" "-dBATCH" "-dGraphicsAlphaBits=4"
-					   "-dQUIET" "-r120")))
+;; (setq doc-view-ghostscript-program "/usr/local/bin/gs")
+;; (setq doc-view-ghostscript-options (quote ("-dNOPAUSE"
+;;					   "-sDEVICE=png16m" "-dTextAlphaBits=4" "-dBATCH" "-dGraphicsAlphaBits=4"
+;;					   "-dQUIET" "-r120")))
 
 
