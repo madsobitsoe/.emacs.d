@@ -43,4 +43,10 @@ truncate-partial-width-windows nil)
 ;; Highlight matching parentheses when the point is on one of them
 (show-paren-mode 1)
 
+;; (rainbow-mode t) 
+(require 'rainbow-delimiters)
+(global-rainbow-delimiters-mode)
+;; (rainbow-blocks-mode-enable)
+;; (rainbow-identifiers-mode)
+
 (provide 'appearance)

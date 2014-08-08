@@ -19,7 +19,8 @@
 ;; Waste of bytes
 (setq initial-scratch-message 
 ";; Welcome to your domain of evil
-;; The elisp is loose")
+;; The elisp is loose
+")
 
 ;; Straight to *scratch*
 (setq initial-buffer-choice t)
@@ -27,7 +28,7 @@
 ;; Set up load
 (add-to-list 'load-path user-emacs-directory)
 (add-to-list 'load-path (concat user-emacs-directory "elpa/dash-20140717.547"))
-
+(add-to-list 'load-path (concat user-emacs-directory "elpa/rainbow-delimiters-20140713.1131"))
 ;; Keep emacs Custom-settings in separate file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
@@ -37,6 +38,8 @@
 ;; Setup appearance early
 (require 'appearance)
 
+;; Setup Ido
+(require 'setup-ido)
 ;; Setup my custom functions
 (require 'my-functions)
 
@@ -121,6 +124,13 @@
 (ac-config-default)
 
 
+;; setup some variables for WDIRED
+;; invoke with C-x C-q in any dired buffer
+;; edit stuff, commit with C-c C-C
+(setq wdired-use-interactive-rename t)
+(setq wdired-confirm-overwrite t)
+
+
 ;; Setup multiple-cursors
 ;; ------------------------------
 ;; Useful for editing lots of text as one
@@ -164,36 +174,28 @@
 (require 'undo-tree)
 (global-undo-tree-mode)
 
+<<<<<<< HEAD
  
 
 
+=======
+>>>>>>> 5cf175d5851a354c9c2e1d59094721c9372a7dbd
 
 
 
 
+;; Setup helm-spotify-custom
+(require 'helm-spotify-custom)
 
+ 
 (require 'highlight-escape-sequences)
 (hes-mode)
 (put 'font-lock-regexp-grouping-backslash 'face-alias 'font-lock-builtin-face)
 
 
+;; setup eclim
 
-;;  Stuff that doesn't work yet
-;;  ------------------------------
-
-
-;;  Configure eclim
-;; (add-to-list 'load-path "~/.emacs.d/emacs-eclim/");
-;; (require 'eclim)
-;; (global-eclim-mode)
-;; (require 'eclimd)
-;;  Regular auto-complete initialization
-;; (require 'auto-complete-config)
-;; (ac-config-default)
-
-;;  Add the emacs-eclim source
-;; (require 'ac-emacs-eclim-source)
-;; (ac-emacs-eclim-config)
+(eval-after-load 'setup-eclim (require 'eclimd))
 
 
 

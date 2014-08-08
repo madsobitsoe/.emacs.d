@@ -3,11 +3,28 @@
 ;; File that sets up my custom keybindings for emacs
 ;;
 
-;; switch to previous buffer
-(global-set-key (kbd "C-x p") 'switch-to-previous-buffer)
-;; Open previous buffer on right
+;; switch to last used buffer
+(global-set-key (kbd "C-x p") 'switch-to-last-buffer)
+;; Open previous buffer on right or below
 (global-set-key (kbd "C-x 2") 'open-prev-buffer-below)
 (global-set-key (kbd "C-x 3") 'open-prev-buffer-on-right)
+;; Open shell on right or below
+(global-set-key (kbd "C-c C-x 2") 'open-shell-below)
+(global-set-key (kbd "C-c C-x 3") 'open-shell-on-right)
+
+
+;; Setup rotate windows
+;; Enables to switch buffers around when they open wrong
+;; OCD-curing functionality
+(global-set-key (kbd "C-c C-r") 'rotate-windows)
+
+;; Create newlines mid-sentence both above and below
+(global-set-key (kbd "<C-return>") 'open-line-below)
+(global-set-key (kbd "<C-M-return>") 'open-line-above) 
+
+;; Scroll other buffer upwards
+(global-set-key (kbd "C-M-f")  (lambda () (interactive) (scroll-other-window -36)))
+
 
 
 ;; make ibuffer default for buffer change
@@ -34,7 +51,6 @@
 (global-set-key (kbd "C-=") 'er/expand-region)
 
 
-
 ;; Webjump
 ;; ------------------------------
 (global-set-key (kbd "C-c j") 'webjump)
@@ -43,10 +59,6 @@
 ;; ------------------------------
 (global-set-key (kbd "C-c C-.") 'yank-on-right)
 
-
-;; Toggle mini emacs
-;; ------------------------------
-(global-set-key (kbd "C-c C-,") 'toggle-mini-emacs)
 
 ;; For each occurence
 ;; ------------------------------
@@ -59,9 +71,6 @@
 
 ;; smex - Smart M-x
 (global-set-key (kbd "M-x") 'smex)
-;; For each - incremental block copying
-;; ------------------------------
-(global-set-key (kbd "C-c i") 'for-each)
 
 ;; kills current buffer and deletes file
 ;; ------------------------------
@@ -83,7 +92,7 @@
 (global-set-key (kbd "M-j")
 		(lambda ()
 		  (interactive)
-		  (join-line -1)))
+                  (join-line -1)))
 
 
 ;; Setup hotkeys for splitpane docview
@@ -93,8 +102,15 @@
 (global-set-key (kbd "M-å") 'doc-prev)
 (global-set-key (kbd "M-ø") 'doc-next) 
 
+<<<<<<< HEAD
 ;; Move lines up and down
 (global-set-key (kbd "<M-down>") 'move-line-down)
 (global-set-key (kbd "<M-up>") 'move-line-up)
+=======
+;; Setup moving lines up and down
+(global-set-key (kbd "<M-up>") 'move-line-up)
+(global-set-key (kbd "<M-down>") 'move-line-down)
+
+>>>>>>> 5cf175d5851a354c9c2e1d59094721c9372a7dbd
 
 (provide 'keybindings)
