@@ -102,15 +102,9 @@
 (global-set-key (kbd "M-å") 'doc-prev)
 (global-set-key (kbd "M-ø") 'doc-next) 
 
-<<<<<<< HEAD
-;; Move lines up and down
-(global-set-key (kbd "<M-down>") 'move-line-down)
-(global-set-key (kbd "<M-up>") 'move-line-up)
-=======
-;; Setup moving lines up and down
-(global-set-key (kbd "<M-up>") 'move-line-up)
-(global-set-key (kbd "<M-down>") 'move-line-down)
 
->>>>>>> 5cf175d5851a354c9c2e1d59094721c9372a7dbd
+;; Move lines up and down
+(global-set-key (kbd "<M-up>") 'move-line-up)
+(global-set-key (kbd "<M-down>") 'move-line-down)
 
 (provide 'keybindings)

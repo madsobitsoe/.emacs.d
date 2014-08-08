@@ -70,11 +70,7 @@
 ;; Easily navigate sillycased words
 (global-subword-mode 1)
 
-<<<<<<< HEAD
 ;; Break lines for me, please
-=======
-;; Don't break lines for me, please
->>>>>>> 5cf175d5851a354c9c2e1d59094721c9372a7dbd
 (setq-default truncate-lines nil)
 
 ;; Keep cursor away from edges when scrolling up/down

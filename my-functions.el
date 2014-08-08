@@ -99,23 +99,7 @@ hassle."
   (other-window 1 nil)
   (switch-to-next-buffer))
 
-<<<<<<< HEAD
 
-
-;; move line up
-(defun move-line-up ()
-  (interactive)
-  (transpose-lines 1)
-  (previous-line 2))
-
-
-
-;; move line down
-(defun move-line-down ()
-  (interactive)
-  (next-line 1)
-  (transpose-lines 1)
-  (previous-line 1))
 
 ;; Yank-on-right
 ;; -------------
@@ -146,7 +130,7 @@ hassle."
     (pop-mark)))
 
 
-=======
+
 ;; Open shell in new window on right
 (defun open-shell-on-right ()
   (interactive)
@@ -162,9 +146,6 @@ hassle."
 
 
 (defun switch-to-last-buffer ()
-  
-  
-  
   (interactive)
   (switch-to-buffer (other-buffer)))
 
@@ -225,10 +206,6 @@ hassle."
   (newline)
   (forward-line -1)
   (indent-for-tab-command))
->>>>>>> 5cf175d5851a354c9c2e1d59094721c9372a7dbd
-
-
-
 
 
 (provide 'my-functions)

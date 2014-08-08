@@ -72,6 +72,10 @@
      smex
      simple-httpd
      highlight-escape-sequences
+     flx-ido
+     ido-vertical-mode
+     ido-at-point
+     
      )))
 
 (condition-case nil
@@ -174,15 +178,8 @@
 (require 'undo-tree)
 (global-undo-tree-mode)
 
-<<<<<<< HEAD
+
  
-
-
-=======
->>>>>>> 5cf175d5851a354c9c2e1d59094721c9372a7dbd
-
-
-
 
 ;; Setup helm-spotify-custom
 (require 'helm-spotify-custom)
@@ -197,13 +194,5 @@
 
 (eval-after-load 'setup-eclim (require 'eclimd))
 
-
-
-;; Setup doc-view-mode for pdf
-;; ------------------------------
-;; (setq doc-view-ghostscript-program "/usr/local/bin/gs")
-;; (setq doc-view-ghostscript-options (quote ("-dNOPAUSE"
-;;					   "-sDEVICE=png16m" "-dTextAlphaBits=4" "-dBATCH" "-dGraphicsAlphaBits=4"
-;;					   "-dQUIET" "-r120")))
 
 
