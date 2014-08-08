@@ -31,7 +31,7 @@
 (defun my/ido-go-straight-home ()
   (interactive)
   (cond
-   ((looking-back "~/") (insert "projects/"))
+   ((looking-back "~/") (insert "Documents/KEA/Programmering/2.semester"))
    ((looking-back "/") (insert "~/"))
    (:else (call-interactively 'self-insert-command))))
 
@@ -55,6 +55,7 @@
 
 (add-to-list 'ido-ignore-directories "target")
 (add-to-list 'ido-ignore-directories "node_modules")
+
 
 ;; Ido at point (C-,)
 (require 'ido-at-point)
