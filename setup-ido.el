@@ -28,16 +28,18 @@
 
 (require 'dash)
 
+
 (defun my/ido-go-straight-home ()
   (interactive)
+  (if (equal is-mac t)
   (cond
    ((looking-back "~/") (insert "Documents/KEA/Programmering/2.semester"))
    ((looking-back "/") (insert "~/"))
-   (:else (call-interactively 'self-insert-command))))
+   (:else (call-interactively 'self-insert-command)))))
 
 (defun my/setup-ido ()
   ;; Go straight home
-  (define-key ido-file-completion-map (kbd "~") 'my/ido-go-straight-home)
+(define-key ido-file-completion-map (kbd "~") 'my/ido-go-straight-home)
   (define-key ido-file-completion-map (kbd "C-~") 'my/ido-go-straight-home)
 
   ;; Use C-w to go back up a dir to better match normal usage of C-w
@@ -55,7 +57,6 @@
 
 (add-to-list 'ido-ignore-directories "target")
 (add-to-list 'ido-ignore-directories "node_modules")
-
 
 ;; Ido at point (C-,)
 (require 'ido-at-point)

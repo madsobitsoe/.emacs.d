@@ -25,7 +25,7 @@
 ;; Straight to *scratch*
 (setq initial-buffer-choice t)
 
-;; Set up load path
+;; Set up load
 (add-to-list 'load-path user-emacs-directory)
 (add-to-list 'load-path (concat user-emacs-directory "elpa/dash-20140717.547"))
 (add-to-list 'load-path (concat user-emacs-directory "elpa/rainbow-delimiters-20140713.1131"))
@@ -72,6 +72,10 @@
      smex
      simple-httpd
      highlight-escape-sequences
+     flx-ido
+     ido-vertical-mode
+     ido-at-point
+     
      )))
 
 (condition-case nil
@@ -175,8 +179,7 @@
 (global-undo-tree-mode)
 
 
-
-
+ 
 
 ;; Setup helm-spotify-custom
 (require 'helm-spotify-custom)
@@ -191,13 +194,5 @@
 
 (eval-after-load 'setup-eclim (require 'eclimd))
 
-
-
-;; Setup doc-view-mode for pdf
-;; ------------------------------
-(setq doc-view-ghostscript-program "/usr/local/bin/gs")
-(setq doc-view-ghostscript-options (quote ("-dNOPAUSE"
-					   "-sDEVICE=png16m" "-dTextAlphaBits=4" "-dBATCH" "-dGraphicsAlphaBits=4"
-					   "-dQUIET" "-r120")))
 
 
