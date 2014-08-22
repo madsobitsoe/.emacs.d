@@ -33,13 +33,13 @@
   (interactive)
   (if (equal is-mac t)
   (cond
-   ((looking-back "~/") (insert "Documents/KEA/Programmering/2.semester"))
+   ((looking-back "~/") (insert "Documents/"))
    ((looking-back "/") (insert "~/"))
    (:else (call-interactively 'self-insert-command)))))
 
 (defun my/setup-ido ()
   ;; Go straight home
-(define-key ido-file-completion-map (kbd "~") 'my/ido-go-straight-home)
+  (define-key ido-file-completion-map (kbd "~") 'my/ido-go-straight-home)
   (define-key ido-file-completion-map (kbd "C-~") 'my/ido-go-straight-home)
 
   ;; Use C-w to go back up a dir to better match normal usage of C-w
@@ -55,8 +55,6 @@
 ;; Always rescan buffer for imenu
 (set-default 'imenu-auto-rescan t)
 
-(add-to-list 'ido-ignore-directories "target")
-(add-to-list 'ido-ignore-directories "node_modules")
 
 ;; Ido at point (C-,)
 (require 'ido-at-point)
@@ -74,7 +72,5 @@
           ad-do-it))))
 
 (ido-ubiquitous-use-new-completing-read webjump 'webjump)
-(ido-ubiquitous-use-new-completing-read yas-expand 'yasnippet)
-(ido-ubiquitous-use-new-completing-read yas-visit-snippet-file 'yasnippet)
 
 (provide 'setup-ido)

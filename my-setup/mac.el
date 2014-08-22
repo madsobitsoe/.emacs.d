@@ -2,6 +2,8 @@
 ;; ------------------------------
 ;; OSX specific settings
 
+(require 'dash)
+
 ;; Setup mackeyboard
 (setq mac-option-modifier nil)
 (setq mac-command-modifier 'meta)
@@ -21,7 +23,7 @@
 (setq delete-by-moving-to-trash t trash-directory "~/.Trash/emacs")
 
 ;; Ignore crappy .DS_Store files in ido
-(add-to-list 'ido-ignore-files "\\.DS_Store")
+;;(add-to-list 'ido-ignore-files "\\.DS_Store")
 
 ;; Avoid opening to many files in new window - I want one emacs and millions of buffers
 (setq ns-pop-up-frames nil)

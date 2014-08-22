@@ -62,7 +62,7 @@
 
 ;; For each occurence
 ;; ------------------------------
-(global-set-key (kbd "C-c o") 'for-each-occurence)
+;; (global-set-key (kbd "C-c o") 'for-each-occurence)
 
 ;; Kill other buffers
 ;; ------------------------------
@@ -93,7 +93,6 @@
 		(lambda ()
 		  (interactive)
                   (join-line -1)))
-
 
 ;; Setup hotkeys for splitpane docview
 ;; ------------------------------

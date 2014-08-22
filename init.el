@@ -11,7 +11,7 @@
 ;; Send the splash screen crying back to it's mother
 (setq inhibit-startup-message t)
 
-;; Save 1 or 2 keystrokes constantly
+;; Save 1 or 2 keystrokes constantly;; Save 1 or 2 keystrokes constantly
 (fset 'yes-or-no-p 'y-or-n-p)
 ;; Ask before killing emacs
 (setq confirm-kill-emacs 'y-or-n-p)
@@ -25,10 +25,20 @@
 ;; Straight to *scratch*
 (setq initial-buffer-choice t)
 
+;; Set path to dependencies
+(setq site-lisp-dir
+      (expand-file-name "site-lisp" user-emacs-directory))
+
+(setq my-setup-lisp
+      (expand-file-name "my-setup" user-emacs-directory))
+
 ;; Set up load
-(add-to-list 'load-path user-emacs-directory)
-(add-to-list 'load-path (concat user-emacs-directory "elpa/dash-20140717.547"))
-(add-to-list 'load-path (concat user-emacs-directory "elpa/rainbow-delimiters-20140713.1131"))
+(add-to-list 'load-path my-setup-lisp)
+(add-to-list 'load-path site-lisp-dir)
+;; Make site-lisp-dir the package folder
+(setq package-user-dir "~/.emacs.d/site-lisp")
+
+
 ;; Keep emacs Custom-settings in separate file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
@@ -38,13 +48,20 @@
 ;; Setup appearance early
 (require 'appearance)
 
+;; Add external projects to load path
+(dolist (project (directory-files site-lisp-dir t "\\w+"))
+  (when (file-directory-p project)
+    (add-to-list 'load-path project)))
+
+
+
 ;; Setup Ido
-(require 'setup-ido)
+;; (require 'setup-ido)
 ;; Setup my custom functions
 (require 'my-functions)
 
 ;; setup custom keybindings
-(require 'keybindings)
+;; (require 'keybindings)
 
 ;; Write backup files to own directory
 ;; Get's rid of ~file~
@@ -60,13 +77,24 @@
 (setq-default save-place t)
 (setq save-place-file (expand-file-name ".places" user-emacs-directory))
 
+
 ;; Setup packages
 (require 'setup-package)
+
+;; Are we on a mac?
+(setq is-mac (equal system-type 'darwin))
+;; If so, set some stuff
+(when is-mac
+  (require-package 'exec-path-from-shell)
+  (exec-path-from-shell-initialize)
+  (require 'mac))
+
 
 ;; Install extensions if they're missing
 (defun init--install-packages ()
   (packages-install
-   '(htmlize
+   '(undo-tree
+     htmlize
      multiple-cursors
      expand-region
      smex
@@ -75,7 +103,10 @@
      flx-ido
      ido-vertical-mode
      ido-at-point
-     
+     auto-complete
+     markdown-mode
+     helm
+     emacs-eclim
      )))
 
 (condition-case nil
@@ -85,17 +116,11 @@
    (init--install-packages)))
 
 
+
 ;; Start with sane defaults
 (require 'sane-defaults)
 
 
-;; Are we on a mac?
-(setq is-mac (equal system-type 'darwin))
-;; If so, set some stuff
-(when is-mac
-  (require-package 'exec-path-from-shell)
-  (exec-path-from-shell-initialize)
-  (require 'mac))
 
 
 
@@ -124,8 +149,15 @@
 
 ;; Set up autocomplete
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20140618.2217/dict")
+;; (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20140618.2217/dict")
 (ac-config-default)
+
+
+;; Set up org
+(require 'org)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
 
 
 ;; setup some variables for WDIRED

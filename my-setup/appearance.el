@@ -44,9 +44,9 @@ truncate-partial-width-windows nil)
 (show-paren-mode 1)
 
 ;; (rainbow-mode t) 
-(require 'rainbow-delimiters)
-(global-rainbow-delimiters-mode)
-;; (rainbow-blocks-mode-enable)
-;; (rainbow-identifiers-mode)
+;; (require 'rainbow-delimiters)
+;; (global-rainbow-delimiters-mode)
+;; (global-rainbow-blocks-mode)
+
 
 (provide 'appearance)
