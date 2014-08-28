@@ -6,7 +6,7 @@
 
 (package-initialize)
 
-(unless (file-exists-p "~/.emacs.d/elpa/archives/melpa")
+(unless (file-exists-p "~/.emacs.d/site-lisp/archives/melpa")
   (package-refresh-contents))
 
 (defun packages-install (packages)

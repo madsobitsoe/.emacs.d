@@ -55,13 +55,11 @@
 
 
 
-;; Setup Ido
-;; (require 'setup-ido)
 ;; Setup my custom functions
 (require 'my-functions)
 
 ;; setup custom keybindings
-;; (require 'keybindings)
+(require 'keybindings)
 
 ;; Write backup files to own directory
 ;; Get's rid of ~file~
@@ -94,6 +92,7 @@
 (defun init--install-packages ()
   (packages-install
    '(undo-tree
+     ace-jump-mode
      htmlize
      multiple-cursors
      expand-region
@@ -103,10 +102,13 @@
      flx-ido
      ido-vertical-mode
      ido-at-point
+     ido-ubiquitous
      auto-complete
      markdown-mode
      helm
      emacs-eclim
+     skewer-mode
+     mouse-slider-mode
      )))
 
 (condition-case nil
@@ -120,36 +122,31 @@
 ;; Start with sane defaults
 (require 'sane-defaults)
 
-
-
-
-
 ;; Setup extensions
 (eval-after-load 'shell '(require 'setup-shell))
 
-
-
 ;; Font lock dash.el
 (eval-after-load "dash" '(dash-enable-font-lock))
-
 
 ;; Load stuff on demand
 (autoload 'skewer-start "setup-skewer" nil t)
 (autoload 'skewer-demo "setup-skewer" nil t)
 
+
 ;; Map files to modes
 (require 'mode-mappings)
+
+;; Setup ido
+(require 'setup-ido)
+
 
 ;; Setup smex - Smart M-x
 (require 'smex)
 (smex-initialize)
 
-
-
-
 ;; Set up autocomplete
 (require 'auto-complete-config)
-;; (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20140618.2217/dict")
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/site-lisp/auto-complete-20140803.2118/dict")
 (ac-config-default)
 
 
@@ -203,15 +200,10 @@
 ;; 
 (require 'markdown-mode)
 
-
-
 ;; Undo-tree
 ;; ------------------------------
 (require 'undo-tree)
 (global-undo-tree-mode)
-
-
- 
 
 ;; Setup helm-spotify-custom
 (require 'helm-spotify-custom)
@@ -221,9 +213,7 @@
 (hes-mode)
 (put 'font-lock-regexp-grouping-backslash 'face-alias 'font-lock-builtin-face)
 
-
 ;; setup eclim
-
 (eval-after-load 'setup-eclim (require 'eclimd))
 
 

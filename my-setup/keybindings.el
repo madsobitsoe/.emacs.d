@@ -5,9 +5,11 @@
 
 ;; switch to last used buffer
 (global-set-key (kbd "C-x p") 'switch-to-last-buffer)
+
 ;; Open previous buffer on right or below
 (global-set-key (kbd "C-x 2") 'open-prev-buffer-below)
 (global-set-key (kbd "C-x 3") 'open-prev-buffer-on-right)
+
 ;; Open shell on right or below
 (global-set-key (kbd "C-c C-x 2") 'open-shell-below)
 (global-set-key (kbd "C-c C-x 3") 'open-shell-on-right)
@@ -24,7 +26,6 @@
 
 ;; Scroll other buffer upwards
 (global-set-key (kbd "C-M-f")  (lambda () (interactive) (scroll-other-window -36)))
-
 
 
 ;; make ibuffer default for buffer change

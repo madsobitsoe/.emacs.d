@@ -12,13 +12,13 @@
 Replaces a regexp placeholder with a list of numbers incremented in steps"
   (interactive "r\nsPlaceholder: \nnStart: \nnStep: ")
   (toggle-case-fold-search)
-  (let ((count start))
-    (save-excursion
-      (while (re-search-forward place nil t)
 	(narrow-to-region start end)
-	(replace-match (number-to-string count) nil t)
-	(setq count (+ count step))))
-    (toggle-case-fold-search)))
+        (let ((count start))
+          (save-excursion
+            (while (re-search-forward place nil t)
+              (replace-match (number-to-string count) nil t)
+              (setq count (+ count step))))
+          (toggle-case-fold-search)))
 
 ;; Kill-other-buffers
 ;; ------------------------------
@@ -175,24 +175,24 @@ hassle."
              (set-window-start w2 s1)
              (setq i (1+ i)))))))
 
-;; Move line down
-(defun move-line-down ()
-  (interactive)
-  (let ((col (current-column)))
+;; Move line down               
+(defun move-line-down ()        
+  (interactive)                 
+  (let ((col (current-column))) 
+    (save-excursion             
+      (forward-line)            
+      (transpose-lines 1))      
+    (forward-line)              
+    (move-to-column col)))      
+                                
+  ;; move line up
+  (defun move-line-up ()
+    (interactive)
+    (let ((col (current-column)))
     (save-excursion
-      (forward-line)
-      (transpose-lines 1))
-    (forward-line)
-    (move-to-column col)))
-
-;; move line up
-(defun move-line-up ()
-  (interactive)
-  (let ((col (current-column)))
-    (save-excursion
-      (forward-line)
-      (transpose-lines -1))
-    (move-to-column col)))
+        (transpose-lines 1))
+        (forward-line -2)
+      (move-to-column col)))
 
 (defun open-line-below ()
   (interactive)
