@@ -85,6 +85,8 @@
 (when is-mac
   (require-package 'exec-path-from-shell)
   (exec-path-from-shell-initialize)
+  ;; setup eclim
+  (eval-after-load 'setup-eclim (require 'eclimd))
   (require 'mac))
 
 
@@ -213,8 +215,7 @@
 (hes-mode)
 (put 'font-lock-regexp-grouping-backslash 'face-alias 'font-lock-builtin-face)
 
-;; setup eclim
-(eval-after-load 'setup-eclim (require 'eclimd))
+
 
 
 

@@ -107,4 +107,8 @@
 (global-set-key (kbd "<M-up>") 'move-line-up)
 (global-set-key (kbd "<M-down>") 'move-line-down)
 
+
+(global-set-key (kbd "C-c C-e") 'replace-last-sexp)
+
+
 (provide 'keybindings)

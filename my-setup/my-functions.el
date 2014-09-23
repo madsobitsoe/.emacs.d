@@ -131,6 +131,24 @@ hassle."
 
 
 
+
+;; evaluate the last symbolic expression and  replace it with the return value
+(defun replace-last-sexp ()
+    (interactive)
+    (let ((value (eval (preceding-sexp))))
+      (kill-sexp -1)
+      (insert (format "%S" value))))
+
+
+
+
+
+
+
+
+
+
+
 ;; Open shell in new window on right
 (defun open-shell-on-right ()
   (interactive)
