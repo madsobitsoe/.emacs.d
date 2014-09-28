@@ -225,5 +225,35 @@ hassle."
   (forward-line -1)
   (indent-for-tab-command))
 
+(defun end-bracket-insert-method-name ()
+  "inserts the name of method that opened paren"
+  (interactive)
+  (defvar temp-method-name)
+;; Save excursion so we can jump back
+  (save-excursion
+    (re-search-backward "}")
+    (backward-char)
+  (let ((count 1))
+    (while  (>  count 0)
+    (if (looking-back "{")
+        (setq count (- count 1)))
+    (if (looking-back "}")
+        (setq count (+ count 1)))
+    (backward-char)))
+  (line-move -2)
+  (re-search-forward "[-_a-z0-9]+(" nil nil nil)
+  (backward-char 1)
+  (let ((end (point)))
+    (while (not (looking-back " "))
+      (backward-char))
+    (setq temp-method-name (buffer-substring (point) end))))
+  (re-search-backward "}")
+  (forward-char)
+  (insert (concat " // End of " temp-method-name)))
+
+
+
+
+
 
 (provide 'my-functions)
