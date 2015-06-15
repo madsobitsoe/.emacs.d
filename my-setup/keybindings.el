@@ -37,24 +37,7 @@
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 
 
-;; multiple-cursors
-;; ------------------------------
-;; add a cursor to each line in region
-(global-set-key (kbd "C-c C-a") 'mc/edit-lines)
-;; add cursors based on keywords in buffer
-(global-set-key (kbd "C-æ") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-Æ") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-æ") 'mc/mark-all-like-this)
 
-
-;; Expand region
-;; ------------------------------
-(global-set-key (kbd "C-=") 'er/expand-region)
-
-
-;; Webjump
-;; ------------------------------
-(global-set-key (kbd "C-c j") 'webjump)
 
 ;; Yank-on-right
 ;; ------------------------------
@@ -97,10 +80,10 @@
 
 ;; Setup hotkeys for splitpane docview
 ;; ------------------------------
-(fset 'doc-prev "\C-xo\C-x[\C-xo")
-(fset 'doc-next "\C-xo\C-x]\C-xo")
-(global-set-key (kbd "M-å") 'doc-prev)
-(global-set-key (kbd "M-ø") 'doc-next) 
+;; (fset 'doc-prev "\C-xo\C-x[\C-xo")
+;; (fset 'doc-next "\C-xo\C-x]\C-xo")
+;; (global-set-key (kbd "M-å") 'doc-prev)
+;; (global-set-key (kbd "M-ø") 'doc-next) 
 
 
 ;; Move lines up and down

@@ -85,8 +85,8 @@
 (when is-mac
   (require-package 'exec-path-from-shell)
   (exec-path-from-shell-initialize)
-  ;; setup eclim
-  (eval-after-load 'setup-eclim (require 'eclimd))
+
+
   (require 'mac))
 
 
@@ -96,8 +96,6 @@
    '(undo-tree
      ace-jump-mode
      htmlize
-     multiple-cursors
-     expand-region
      smex
      simple-httpd
      highlight-escape-sequences
@@ -108,10 +106,8 @@
      auto-complete
      markdown-mode
      helm
-     emacs-eclim
-     skewer-mode
-     mouse-slider-mode
      )))
+
 
 (condition-case nil
     (init--install-packages)
@@ -129,10 +125,6 @@
 
 ;; Font lock dash.el
 (eval-after-load "dash" '(dash-enable-font-lock))
-
-;; Load stuff on demand
-(autoload 'skewer-start "setup-skewer" nil t)
-(autoload 'skewer-demo "setup-skewer" nil t)
 
 
 ;; Map files to modes
@@ -166,34 +158,12 @@
 (setq wdired-confirm-overwrite t)
 
 
-;; Setup multiple-cursors
-;; ------------------------------
-;; Useful for editing lots of text as one
-;; Aswell as bulk-renaming in dired
-;; 
-(require 'multiple-cursors)
-
-;; Setup expand region
-;; ------------------------------
-;; Useful for selecting regions of text
-;; based on semantic keywords
-;;
-(require 'expand-region)
 
 ;; Setup htmlize
 ;; ------------------------------
 ;; Creates an html version with css of the current buffer
 ;; keeps formatting, syntax-highlighting etc.
 (require 'htmlize)
-
-;; Setup webjump
-;; ------------------------------
-;; Webjump makes you quickly jump to a website defined in a list
-;; Add custom sites here
-(require 'webjump)
-(setq webjump-sites
-      (append '(("Stack Overflow" . "www.stackoverflow.com"))
-	      webjump-sample-sites))
 
 
 ;; Setup Markdown major mode

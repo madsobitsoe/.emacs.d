@@ -35,10 +35,10 @@
 
 ;; Setup doc-view-mode for pdf
 ;; ------------------------------
-(setq doc-view-ghostscript-program "/usr/local/bin/gs")
-(setq doc-view-ghostscript-options (quote ("-dNOPAUSE"
-					   "-sDEVICE=png16m" "-dTextAlphaBits=4" "-dBATCH" "-dGraphicsAlphaBits=4"
-					   "-dQUIET" "-r120")))
+;; (setq doc-view-ghostscript-program "/usr/local/bin/gs")
+;; (setq doc-view-ghostscript-options (quote ("-dNOPAUSE"
+;;					   "-sDEVICE=png16m" "-dTextAlphaBits=4" "-dBATCH" "-dGraphicsAlphaBits=4"
+;;					   "-dQUIET" "-r120")))
 
 
 (provide 'mac)

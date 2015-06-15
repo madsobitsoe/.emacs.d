@@ -22,7 +22,7 @@ truncate-partial-width-windows nil)
 
 (defun use-default-theme ()
   (interactive)
-  (disable-theme 'prez)
+;;  (disable-theme 'prez)
   (load-theme 'default-black)
   (when (boundp 'cccamera/default-font)
     (set-face-attribute 'default nil :font cccamera/default-font)))
@@ -32,7 +32,7 @@ truncate-partial-width-windows nil)
 
 
 ;; Sets the title fram to full file path
-(setq frame-title-format '("Current buffer: %b %+%+ Current file: %f"))
+(setq frame-title-format '("Buffer: %b %+%+ File: %f"))
 
 ;; enable line numbers
 (global-linum-mode t)
@@ -42,11 +42,5 @@ truncate-partial-width-windows nil)
 
 ;; Highlight matching parentheses when the point is on one of them
 (show-paren-mode 1)
-
-;; (rainbow-mode t) 
-;; (require 'rainbow-delimiters)
-;; (global-rainbow-delimiters-mode)
-;; (global-rainbow-blocks-mode)
-
 
 (provide 'appearance)
