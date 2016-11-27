@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: comment
+# key: com
+# --
+\textit{\color{red} Mads:${1:Comment}}$0

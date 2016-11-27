@@ -4,6 +4,15 @@
 ;; contains lot's of copied code
 
 ;; Turn off mouse interface early in startup to avoid momentary display
+
+
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -11,7 +20,7 @@
 ;; Send the splash screen crying back to it's mother
 (setq inhibit-startup-message t)
 
-;; Save 1 or 2 keystrokes constantly;; Save 1 or 2 keystrokes constantly
+;; Save 1 or 2 keystrokes constantly;;
 (fset 'yes-or-no-p 'y-or-n-p)
 ;; Ask before killing emacs
 (setq confirm-kill-emacs 'y-or-n-p)
@@ -49,10 +58,13 @@
 (require 'appearance)
 
 ;; Add external projects to load path
-(dolist (project (directory-files site-lisp-dir t "\\w+"))
-  (when (file-directory-p project)
-    (add-to-list 'load-path project)))
+;;(dolist (project (directory-files site-lisp-dir t "\\w+"))
+;;  (when (file-directory-p project)
+;;    (add-to-list 'load-path project)))
 
+
+;; Setup smooth scrolling
+(require 'mouse)
 
 
 ;; Setup my custom functions
@@ -81,13 +93,6 @@
 
 ;; Are we on a mac?
 (setq is-mac (equal system-type 'darwin))
-;; If so, set some stuff
-(when is-mac
-  (require-package 'exec-path-from-shell)
-  (exec-path-from-shell-initialize)
-
-
-  (require 'mac))
 
 
 ;; Install extensions if they're missing
@@ -104,8 +109,11 @@
      ido-at-point
      ido-ubiquitous
      auto-complete
+     yasnippet
      markdown-mode
      helm
+     elpy
+     auctex
      )))
 
 
@@ -120,18 +128,27 @@
 ;; Start with sane defaults
 (require 'sane-defaults)
 
+;; If so, set some stuff
+(when is-mac
+  (require-package 'exec-path-from-shell)
+  (exec-path-from-shell-initialize)
+  (require 'mac))
+
+
 ;; Setup extensions
 (eval-after-load 'shell '(require 'setup-shell))
 
 ;; Font lock dash.el
-(eval-after-load "dash" '(dash-enable-font-lock))
+(eval-after-load 'dash '(dash-enable-font-lock))
 
+;; Setup yasnippet
+(require 'setup-yasnippet)
 
-;; Map files to modes
-(require 'mode-mappings)
 
 ;; Setup ido
 (require 'setup-ido)
+;; Map files to modes
+(require 'mode-mappings)
 
 
 ;; Setup smex - Smart M-x
@@ -142,6 +159,7 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/site-lisp/auto-complete-20140803.2118/dict")
 (ac-config-default)
+(global-auto-complete-mode t)
 
 
 ;; Set up org
@@ -150,12 +168,56 @@
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
 
-
+(setq org-agenda-files (list "~/Dropbox/org/GP/Work/tasks.org"
+                             "~/Dropbox/org/GP/calendar/googlecalForOrgmode.org"
+                             "~/Dropbox/org/diku/pop/pop-opgaver.org"))
+(setq org-todo-keywords
+      '((sequence "TODO" "IN PROGRESS" "|" "DONE" "CANCELLED")))
 ;; setup some variables for WDIRED
 ;; invoke with C-x C-q in any dired buffer
 ;; edit stuff, commit with C-c C-C
 (setq wdired-use-interactive-rename t)
 (setq wdired-confirm-overwrite t)
+
+
+
+
+;; Setup latex
+(require 'setup-latex)
+
+
+;; Setup fsharp
+(require 'setup-fsharp)
+
+
+
+;; Setup python-mode
+;; ------------------------------
+;; 
+;; 
+
+;; (require 'python-mode)
+
+;; ;; use IPython
+;; (setq-default py-shell-name "ipython")
+;; (setq-default py-which-bufname "IPython")
+;; ; use the wx backend, for both mayavi and matplotlib
+;; (setq py-python-command-args
+;;   '("--gui=wx" "--pylab=wx" "-colors" "Linux"))
+;; (setq py-force-py-shell-name-p t)
+
+;; ; switch to the interpreter after executing code
+;; (setq py-shell-switch-buffers-on-execute-p t)
+;; (setq py-switch-buffers-on-execute-p t)
+;; ; don't split windows
+;; (setq py-split-windows-on-execute-p t)
+;; ; try to automagically figure out indentation
+;; (setq py-smart-indentation t)
+
+;; Setup el-py mode
+;; ------------------------------
+;; Sets up elpy
+(require 'setup-elpy)
 
 
 
@@ -178,14 +240,19 @@
 (global-undo-tree-mode)
 
 ;; Setup helm-spotify-custom
-(require 'helm-spotify-custom)
+;;(require 'helm-spotify-custom)
 
  
 (require 'highlight-escape-sequences)
 (hes-mode)
 (put 'font-lock-regexp-grouping-backslash 'face-alias 'font-lock-builtin-face)
 
+;; Setup apex-mode
+;; (require 'apex-mode)
+
+(require 'wc-mode)
 
 
-
-
+;; Enable upcase and downcase region (C-x C-u & C-x C-l)
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)

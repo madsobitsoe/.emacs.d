@@ -1,0 +1,6 @@
+# name: lstlisting
+# key: lst
+# --
+\begin{lstlisting}[mathescape]
+$0
+\end{lstlisting}

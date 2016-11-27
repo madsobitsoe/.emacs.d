@@ -1,0 +1,24 @@
+# name : basicsetup
+# key : basicsetup
+# --
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[danish]{babel}
+\usepackage [T1]{fontenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{amsmath}
+
+
+\title{$1}
+\author{Mads Obitsø}
+
+\begin{document}
+\maketitle 
+$0
+
+\end{document}

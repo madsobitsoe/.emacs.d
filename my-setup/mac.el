@@ -8,6 +8,7 @@
 (setq mac-option-modifier nil)
 (setq mac-command-modifier 'meta)
 
+
 ;; Sets the default directory to home, not /
 (setq default-directory "~/")
 
@@ -25,11 +26,11 @@
 ;; Ignore crappy .DS_Store files in ido
 ;;(add-to-list 'ido-ignore-files "\\.DS_Store")
 
-;; Avoid opening to many files in new window - I want one emacs and millions of buffers
+;; Avoid opening too many files in new window - I want one emacs and millions of buffers
 (setq ns-pop-up-frames nil)
 
 ;; Use aspell for spellchecking
-(setq ispell-program-name "/usr/local/bin/aspell")
+(setq ispell-program-name "aspell")
 
 
 

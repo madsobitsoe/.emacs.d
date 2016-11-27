@@ -50,7 +50,9 @@
 
 ;; Kill other buffers
 ;; ------------------------------
-(global-set-key (kbd "C-x C-l") 'kill-other-buffers)
+;; Not using this anymore. Lowercase region is much more used.
+;;(global-set-key (kbd "C-x C-l") 'kill-other-buffers)
+
 
 
 ;; smex - Smart M-x
@@ -77,6 +79,19 @@
 		(lambda ()
 		  (interactive)
                   (join-line -1)))
+
+(global-set-key (kbd "C-M-c")
+                (lambda ()
+                  (interactive)
+                  (next-line 15)))
+
+
+(global-set-key (kbd "C-M-e")
+                (lambda ()
+                  (interactive)
+                  (previous-line 15)))
+
+
 
 ;; Setup hotkeys for splitpane docview
 ;; ------------------------------
