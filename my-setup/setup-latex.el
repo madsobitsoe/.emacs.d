@@ -67,5 +67,10 @@
   '(setq LaTeX-clean-intermediate-suffixes
      (append LaTeX-clean-intermediate-suffixes (list "\\.fdb_latexmk" "\\.rel" "\\.tex~"))))
 
+
+;; Set RefTeX ToC keybinding
+(eval-after-load 'latex '(define-key LaTeX-mode-map (kbd "C-c t") 'reftex-toc))
+
+
 ;; Provide package
 (provide 'setup-latex)

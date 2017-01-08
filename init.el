@@ -247,9 +247,8 @@
 (hes-mode)
 (put 'font-lock-regexp-grouping-backslash 'face-alias 'font-lock-builtin-face)
 
-;; Setup apex-mode
-;; (require 'apex-mode)
-
+(require 'expand-region)
+(require 'multiple-cursors)
 (require 'wc-mode)
 
 

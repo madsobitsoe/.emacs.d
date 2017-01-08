@@ -43,4 +43,10 @@ truncate-partial-width-windows nil)
 ;; Highlight matching parentheses when the point is on one of them
 (show-paren-mode 1)
 
+;; Setup smart modeline
+(setq sml/no-confirm-load-theme t)
+(setq sml/theme 'smart-mode-line-powerline)
+(sml/setup)
+
+
 (provide 'appearance)

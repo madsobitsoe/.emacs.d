@@ -1,7 +1,7 @@
 # name : basicsetup
 # key : basicsetup
 # --
-\documentclass[a4paper]{article}
+\documentclass[12pt, a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[danish]{babel}
 \usepackage [T1]{fontenc}
@@ -11,7 +11,11 @@
 \graphicspath{{figures/}}
 \usepackage{listings}
 \usepackage{color}
-\usepackage{amsmath}
+\usepackage{amsfonts, amsmath, amssymb}
+% Enable integration between METAPOST pictures and LaTeX
+% See also: https://www.ctan.org/pkg/gmp
+% and     : http://ctan.mackichan.com/macros/latex2e/contrib/gmp/gmp.pdf
+\usepackage[shellescape, latex]{gmp}
 
 
 \title{$1}
