@@ -8,9 +8,6 @@ font-lock-maximum-decoration t
 color-theme-is-global t
 truncate-partial-width-windows nil)
 
-;; Highlight current line
-(global-hl-line-mode 1)
-
 ;; Set custom theme path
 (setq custom-theme-directory (concat user-emacs-directory "themes"))
 
@@ -40,13 +37,28 @@ truncate-partial-width-windows nil)
 
 (setq redisplay-dont-pause t)
 
-;; Highlight matching parentheses when the point is on one of them
-(show-paren-mode 1)
 
 ;; Setup smart modeline
 (setq sml/no-confirm-load-theme t)
-(setq sml/theme 'smart-mode-line-powerline)
+(setq sml/theme 'respectful)
 (sml/setup)
 
+
+
+;; Set up various highligting
+;; ============================================================================
+;; Highlight matching parentheses when the point is on one of them
+(show-paren-mode 1)
+;; Highlight current line
+(global-hl-line-mode 1)
+;; Fucking rainbows
+(require 'rainbow-delimiters)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+;; Hightlight numbers
+(highlight-numbers-mode)
+;; Highlight indentation
+(highlight-indent-guides-mode)
+;; Highlight chars above 80
+(column-enforce-mode)
 
 (provide 'appearance)

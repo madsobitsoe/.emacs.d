@@ -7,11 +7,6 @@
 
 
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
 
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -46,6 +41,15 @@
 (add-to-list 'load-path site-lisp-dir)
 ;; Make site-lisp-dir the package folder
 (setq package-user-dir "~/.emacs.d/site-lisp")
+
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
+
 
 
 ;; Keep emacs Custom-settings in separate file
