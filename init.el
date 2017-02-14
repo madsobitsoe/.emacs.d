@@ -254,7 +254,8 @@
 
 (require 'expand-region)
 (require 'multiple-cursors)
-(require 'wc-mode)
+(require 'simple-wc-mode)
+;(require 'wc-mode)
 
 
 ;; Enable upcase and downcase region (C-x C-u & C-x C-l)

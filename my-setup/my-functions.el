@@ -252,8 +252,30 @@ hassle."
   (insert (concat " // End of " temp-method-name)))
 
 
+(defun replace-latex-markup (token delim)
+  (goto-char (point-min))
+  (setq rx (format "\\(\\\\%s\\)\\(%s\\)\\?\\(\\w*\\)\\2" token delim))
+  (while (re-search-forward rx nil t)
+    (replace-match "\\3")))
+
+(defun latex-delete-begin-and-end-lines ()
+  (interactive)
+  (while (re-search-forward "\\\\begin\{.*?\}\\([.*?]\\)?" nil t)
+    (replace-match "DELETE LINE")))
 
 
+  )
+  
+(defun m-temp-fun ()
+  (interactive)
+  (mapcar (lambda (token-and-args)
+	    (funcall #'replace-latex-markup (car token-and-args) (cdr token-and-args)))
+	  '(("verb" . "[!=-]")
+	    ("item" . "")
+	    ("" . "")
+	    )))
+
+				  
 
 
 (provide 'my-functions)
