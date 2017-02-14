@@ -45,9 +45,11 @@
 ;; Don't highlight matches with jump-char - it's distracting
 (setq jump-char-lazy-highlight-face nil)
 
-;; Always display line and column numbers
+;; Always display line and column numbers in modeline
 (setq line-number-mode t)
 (setq column-number-mode t)
+;; Always display linenumbers
+(setq linum-mode t)
 
 ;; Lines should be 80 characters wide, not 72
 (setq fill-column 80)
@@ -64,7 +66,7 @@
 (winner-mode 1)
 
 ;; Never insert tabs
-(set-default 'indent-tabs-mode nil)
+(set-default 'indenct-tabs-mode nil)
 
 ;; Show me empty lines after buffer end
 (set-default 'indicate-empty-lines t)

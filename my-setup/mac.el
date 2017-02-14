@@ -29,17 +29,4 @@
 ;; Avoid opening too many files in new window - I want one emacs and millions of buffers
 (setq ns-pop-up-frames nil)
 
-;; Use aspell for spellchecking
-(setq ispell-program-name "aspell")
-
-
-
-;; Setup doc-view-mode for pdf
-;; ------------------------------
-;; (setq doc-view-ghostscript-program "/usr/local/bin/gs")
-;; (setq doc-view-ghostscript-options (quote ("-dNOPAUSE"
-;;					   "-sDEVICE=png16m" "-dTextAlphaBits=4" "-dBATCH" "-dGraphicsAlphaBits=4"
-;;					   "-dQUIET" "-r120")))
-
-
 (provide 'mac)

@@ -61,4 +61,9 @@ truncate-partial-width-windows nil)
 ;; Highlight chars above 80
 (column-enforce-mode)
 
+;; Set unfocused alpha value
+(set-frame-parameter (selected-frame) 'alpha '(100 . 80))
+
+
+
 (provide 'appearance)

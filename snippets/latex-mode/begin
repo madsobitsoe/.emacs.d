@@ -2,6 +2,6 @@
 # name: begin
 # key: begin
 # --
-\begin{${1:environment$(yas-choose-value '("equation" "split" "align" "figure" ""))${2:*$(yas-choose-value '("*" ""))}}}
+\begin{${1:environment$(yas-choose-value '("equation" "split" "align" "figure" "enumerate" "itemize" ""))${2:*$(yas-choose-value '("*" ""))}}}
 $0
 \end{$1$2}

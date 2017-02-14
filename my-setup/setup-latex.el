@@ -55,9 +55,9 @@
 (setq TeX-view-program-list
      '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o %b")))
 
-;; To invoke Skim using shift-command-click
-(add-hook 'LaTeX-mode-hook
-          (lambda () (local-set-key (kbd "<S-s-mouse-1>") #'TeX-view)))
+;; ;; To invoke Skim using shift-command-click
+;; (add-hook 'LaTeX-mode-hook
+;;           (lambda () (local-set-key (kbd "<S-s-mouse-1>") #'TeX-view)))
 
 ;; Error handling
 (setq TeX-display-help nil)
@@ -71,6 +71,9 @@
 ;; Set RefTeX ToC keybinding
 (eval-after-load 'latex '(define-key LaTeX-mode-map (kbd "C-c t") 'reftex-toc))
 
+;; Some ispell setup
+(require 'ispell)
+(setq ispell-extra-args '("--sug-mode=ultra" "--lang=da" "-W" "3" "--mode=tex"))
 
-;; Provide package
+
 (provide 'setup-latex)

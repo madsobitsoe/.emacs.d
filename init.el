@@ -15,8 +15,6 @@
 ;; Send the splash screen crying back to it's mother
 (setq inhibit-startup-message t)
 
-;; Save 1 or 2 keystrokes constantly;;
-(fset 'yes-or-no-p 'y-or-n-p)
 ;; Ask before killing emacs
 (setq confirm-kill-emacs 'y-or-n-p)
 
@@ -172,11 +170,14 @@
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
 
-(setq org-agenda-files (list "~/Dropbox/org/GP/Work/tasks.org"
-                             "~/Dropbox/org/GP/calendar/googlecalForOrgmode.org"
-                             "~/Dropbox/org/diku/pop/pop-opgaver.org"))
+(setq org-agenda-files (list "~/Dropbox/org/personal/main.org"
+                             "~/Dropbox/org/personal/longtermcal.org"
+                             "~/Dropbox/org/personal/school.org"
+                             "~/.emacs.d/orgModeTests/calendarFromKU.org"))
+
 (setq org-todo-keywords
       '((sequence "TODO" "IN PROGRESS" "|" "DONE" "CANCELLED")))
+
 ;; setup some variables for WDIRED
 ;; invoke with C-x C-q in any dired buffer
 ;; edit stuff, commit with C-c C-C
