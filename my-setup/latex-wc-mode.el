@@ -53,10 +53,9 @@
 
 ;; Functions for stripping off the latex markup
 
-
 ; Delete the preamble. We don't want to count it.
 (defun latex-delete-preamble ()
-  (interactive)
+  ;; (interactive)
   (goto-char (point-min))
   (re-search-forward "\\\\begin\{document\}" nil t)
   (forward-line)
@@ -64,7 +63,7 @@
 
 ; Delete \begin{something} and \end{something} lines
 (defun latex-delete-begin-and-end-lines ()
-  (interactive)
+  ;; (interactive)
   (goto-char (point-min))
   (while (re-search-forward "\\\\\\(begin\\|end\\)\{.*?\}\\([.*?]\\)?" nil t)
     (kill-whole-line)))
@@ -79,7 +78,7 @@
 
 ;; remove commands but leave parameters
 (defun remove-markup-in-commands ()
-  (interactive)
+  ;; (interactive)
   (goto-char (point-min))
   (while (re-search-forward "\\\\.*?\{\\(.*?\\)\}" nil t)
     (replace-match "\\1")))
@@ -99,20 +98,18 @@
       (insert-buffer-substring oldbuf)
       (latex-clean-up-file)
       (set-current-word-count)
-      )
-    )
-  )
+      )))
 
 
 ;; Clean up extra stuff like \item and \maketitle
 (defun remove-leftovers ()
-  (interactive)
+  ;; (interactive)
   (goto-char (point-min))
   (while (re-search-forward "\\(\\\\item\\|\\\\maketitle\\)" nil t)
     (replace-match "")))
 
 (defun m-temp-fun ()
-  (interactive)
+  ;; (interactive)
   (mapcar (lambda (args)
 	    (funcall #'replace-latex-markup
 		     (car args)
@@ -149,12 +146,14 @@ A null prefix argument turns it off.
 
 When enabled, the total number of characters, words, lines and pages is
 displayed in the mode-line. If buffer is in LaTeX-mode, strip markup before counting."
-  :lighter " swc"
+  :lighter " texwc"
   :keymap (let ((map (make-sparse-keymap)))
-	    (define-key map (kbd "C-c r") 'my-latex-word-count)
+	    (define-key map (kbd "C-c r") 'count-words-in-current-latex-buffer)
 	    map)
-  (my-latex-word-count))
+  (count-words-in-current-latex-buffer))
 
-(add-hook 'latex-mode 'latex-wc-mode)
+; Add hook if necessary to provide autoloading
+;(add-hook 'LaTeX-mode-hook 'latex-wc-mode t)
+;(add-hook 'latex-mode 'latex-wc-mode t)
 (provide 'latex-wc-mode)
 ;;; latex-wc-mode.el ends here

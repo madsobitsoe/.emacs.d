@@ -254,9 +254,7 @@
 
 (require 'expand-region)
 (require 'multiple-cursors)
-(require 'simple-wc-mode)
-;(require 'wc-mode)
-
+(require 'latex-wc-mode)
 
 ;; Enable upcase and downcase region (C-x C-u & C-x C-l)
 (put 'downcase-region 'disabled nil)
