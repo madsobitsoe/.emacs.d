@@ -170,10 +170,11 @@
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
 
-(setq org-agenda-files (list "~/Dropbox/org/personal/main.org"
-                             "~/Dropbox/org/personal/longtermcal.org"
-                             "~/Dropbox/org/personal/school.org"
-                             "~/.emacs.d/orgModeTests/calendarFromKU.org"))
+(setq org-agenda-files (list "~/Dropbox/org/personal/main.org" ;; Main taskes
+                             "~/Dropbox/org/personal/longtermcal.org" ;; Long time 
+                             "~/Dropbox/org/personal/school.org" ;; School tasks
+			     "~/Dropbox/org/personal/longtermschool.org" ;; Long school
+                             "~/.emacs.d/orgModeTests/calendarFromKU.org")) ;; Cal from Instructure Canvas
 
 (setq org-todo-keywords
       '((sequence "TODO" "IN PROGRESS" "|" "DONE" "CANCELLED")))
@@ -254,7 +255,8 @@
 
 (require 'expand-region)
 (require 'multiple-cursors)
-(require 'latex-wc-mode)
+;(require 'latex-wc-mode)
+(require 'lwc-mode)
 
 ;; Enable upcase and downcase region (C-x C-u & C-x C-l)
 (put 'downcase-region 'disabled nil)
