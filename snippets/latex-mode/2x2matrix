@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: 2x2matrix
+# key: mat2
+# --
+\left[
+\begin{array}{rr}
+$1 & $2  \\\
+$3 & $4
+\end{array}
+\right]
+$0

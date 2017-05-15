@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: secs
+# key: secs
+# --
+\section{${1:name}}
+\label{sec:${1:$(replace-regexp-in-string (regexp-quote " ")  "_" (downcase yas/text) nil 'literal)}}
+$0

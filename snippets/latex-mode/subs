@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: subsection with label
+# key: subs
+# --
+\subsection{${1:name}}
+\label{subsec:${1:$(replace-regexp-in-string (regexp-quote " ")  "_" (downcase yas/text) nil 'literal)}}
+$0

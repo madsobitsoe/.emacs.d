@@ -3,6 +3,4 @@
 # key: sec
 # --
 \section*{${1:name}}
-
-
 $0

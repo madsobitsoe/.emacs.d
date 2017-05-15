@@ -1,0 +1,18 @@
+# name : interaktionsdesign report setup
+# key : idsetup
+# --
+\documentclass[a4paper]{article}
+\usepackage{id17}
+\header{%
+  assignment={$1},%
+  authors={${2:authors$(yas-choose-value '("Mads Obitsø <\\\texttt{scr411@alumni.ku.dk}>" "Mads Obitsø, Jonas Klausen, Nicolai Rathjen"))}},%
+  shortAuthors={\\texttt{${3:shortAuthors$(yas-choose-value '("Obitsø" "Obitsø, Klausen, Rathjen"))}}},%
+  date={$4}
+}
+
+\begin{document}
+\maketitle
+$0
+
+
+\end{document}
