@@ -2,6 +2,7 @@
 
 (require 'ido)
 (ido-mode t)
+(ido-everywhere 1)
 (setq ido-enable-prefix nil
       ido-enable-flex-matching t
       ido-case-fold nil
@@ -63,7 +64,7 @@
 (ido-at-point-mode)
 
 ;; Use ido everywhere
-(require 'ido-ubiquitous)
+(require 'ido-completing-read+)
 (ido-ubiquitous-mode 1)
 
 ;; Fix ido-ubiquitous for newer packages
@@ -73,6 +74,6 @@
         (let ((ido-ubiquitous-enable-compatibility nil))
           ad-do-it))))
 
-(ido-ubiquitous-use-new-completing-read webjump 'webjump)
+;; (ido-ubiquitous-use-new-completing-read webjump 'webjump)
 
 (provide 'setup-ido)

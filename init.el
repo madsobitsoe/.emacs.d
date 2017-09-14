@@ -109,13 +109,13 @@
      flx-ido
      ido-vertical-mode
      ido-at-point
-     ido-ubiquitous
      auto-complete
      yasnippet
      markdown-mode
      helm
      elpy
      auctex
+     fsharp-mode
      )))
 
 
@@ -169,15 +169,21 @@
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
-
+(setq org-directory "~/Dropbox/org")
 (setq org-agenda-files (list "~/Dropbox/org/personal/main.org" ;; Main taskes
                              "~/Dropbox/org/personal/longtermcal.org" ;; Long time 
                              "~/Dropbox/org/personal/school.org" ;; School tasks
 			     "~/Dropbox/org/personal/longtermschool.org" ;; Long school
-                             "~/.emacs.d/orgModeTests/calendarFromKU.org")) ;; Cal from Instructure Canvas
+                             "~/.emacs.d/orgModeTests/calendarFromKU.org" ;; Cal from Instructure Canvas
+			     "~/Dropbox/org/personal/birthdays.org"
+			     "~/org/flagged.org"))
 
 (setq org-todo-keywords
-      '((sequence "TODO" "IN PROGRESS" "|" "DONE" "CANCELLED")))
+      '((sequence "TODO" "IN-PROGRESS" "|" "DONE" "CANCELLED")))
+;; Mobile org
+(setq org-mobile-inbox-for-pull "~/org/flagged.org")
+(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
+
 
 ;; setup some variables for WDIRED
 ;; invoke with C-x C-q in any dired buffer
