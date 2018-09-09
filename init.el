@@ -4,10 +4,6 @@
 ;; contains lot's of copied code
 
 ;; Turn off mouse interface early in startup to avoid momentary display
-
-
-
-
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -45,9 +41,51 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
+;(package-initialize)
 
 
+;; Setup packages
+(require 'setup-package)
+
+;; Are we on a mac?
+(setq is-mac (equal system-type 'darwin))
+
+
+;; Install extensions if they're missing
+(defun init--install-packages ()
+  (packages-install
+   '(undo-tree
+     ace-jump-mode
+     htmlize
+     smex
+     simple-httpd
+     highlight-escape-sequences
+     shell-command
+     flx-ido
+     ido-vertical-mode
+     ido-at-point
+     ido-completing-read+
+     expand-region
+     multiple-cursors
+     auto-complete
+     yasnippet
+     markdown-mode
+     helm
+     auctex
+     fsharp-mode
+     smart-mode-line
+     rainbow-delimiters
+     highlight-numbers
+     highlight-indent-guides
+     column-enforce-mode
+     )))
+
+
+(condition-case nil
+    (init--install-packages)
+  (error
+   (package-refresh-contents)
+   (init--install-packages)))
 
 
 ;; Keep emacs Custom-settings in separate file
@@ -88,44 +126,6 @@
 (require 'saveplace)
 (setq-default save-place t)
 (setq save-place-file (expand-file-name ".places" user-emacs-directory))
-
-
-;; Setup packages
-(require 'setup-package)
-
-;; Are we on a mac?
-(setq is-mac (equal system-type 'darwin))
-
-
-;; Install extensions if they're missing
-(defun init--install-packages ()
-  (packages-install
-   '(undo-tree
-     ace-jump-mode
-     htmlize
-     smex
-     simple-httpd
-     highlight-escape-sequences
-     flx-ido
-     ido-vertical-mode
-     ido-at-point
-     auto-complete
-     yasnippet
-     markdown-mode
-     helm
-     elpy
-     auctex
-     fsharp-mode
-     )))
-
-
-(condition-case nil
-    (init--install-packages)
-  (error
-   (package-refresh-contents)
-   (init--install-packages)))
-
-
 
 ;; Start with sane defaults
 (require 'sane-defaults)
