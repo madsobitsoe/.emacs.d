@@ -225,6 +225,7 @@ hassle."
   (forward-line -1)
   (indent-for-tab-command))
 
+
 (defun end-bracket-insert-method-name ()
   "inserts the name of method that opened paren"
   (interactive)

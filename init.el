@@ -176,7 +176,8 @@
 			     "~/Dropbox/org/personal/longtermschool.org" ;; Long school
                              "~/.emacs.d/orgModeTests/calendarFromKU.org" ;; Cal from Instructure Canvas
 			     "~/Dropbox/org/personal/birthdays.org"
-			     "~/org/flagged.org"))
+			     "~/org/flagged.org"
+			     ))
 
 (setq org-todo-keywords
       '((sequence "TODO" "IN-PROGRESS" "|" "DONE" "CANCELLED")))
