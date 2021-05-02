@@ -36,9 +36,9 @@
 ;;	 "/Library/TeX/Distributions/Programs/texbin" ":" (getenv "PATH")))
 ;; Since El Capitan, the TeX path is changed to the above. 
 ;; The following is just for backward compatibility
-(setenv "PATH"
-	(concat
-	 "/usr/texbin" ":" (getenv "PATH")))
+;; (setenv "PATH"
+;; 	(concat
+;; 	 "/usr/texbin" ":" (getenv "PATH")))
 
 ;; Make latexmk available via C-c C-c
 ;; Note: SyncTeX is setup via ~/.latexmkrc (see below)
@@ -52,9 +52,9 @@
 ;; use Skim as default pdf viewer
 ;; Skim's displayline is used for forward search (from .tex to .pdf)
 ;; option -b highlights the current line; option -g opens Skim in the background  
-(setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
-(setq TeX-view-program-list
-     '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o %b")))
+;; (setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
+;; (setq TeX-view-program-list
+;;      '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o %b")))
 
 ;; ;; To invoke Skim using shift-command-click
 ;; (add-hook 'LaTeX-mode-hook
@@ -73,8 +73,8 @@
 (eval-after-load 'latex '(define-key LaTeX-mode-map (kbd "C-c t") 'reftex-toc))
 
 ;; Some ispell setup
-(require 'ispell)
-(setq ispell-extra-args '("--sug-mode=ultra" "--lang=da" "-W" "3" "--mode=tex"))
+;; (require 'ispell)
+;; (setq ispell-extra-args '("--sug-mode=ultra" "--lang=da" "-W" "3" "--mode=tex"))
 
 
 (provide 'setup-latex)

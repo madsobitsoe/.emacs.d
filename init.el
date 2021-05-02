@@ -56,11 +56,9 @@
   (packages-install
    '(undo-tree
      ace-jump-mode
-     htmlize
      smex
-     simple-httpd
      highlight-escape-sequences
-     shell-command
+     ;; shell-command
      flx-ido
      ido-vertical-mode
      ido-at-point
@@ -70,7 +68,7 @@
      auto-complete
      yasnippet
      markdown-mode
-     helm
+     ;; helm
      auctex
      fsharp-mode
      smart-mode-line
@@ -138,7 +136,7 @@
 
 
 ;; Setup extensions
-(eval-after-load 'shell '(require 'setup-shell))
+;; (eval-after-load 'shell '(require 'setup-shell))
 
 ;; Font lock dash.el
 (eval-after-load 'dash '(dash-enable-font-lock))
@@ -170,20 +168,21 @@
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
 (setq org-directory "~/Dropbox/org")
-(setq org-agenda-files (list "~/Dropbox/org/personal/main.org" ;; Main taskes
+(setq org-agenda-files (list "~/Dropbox/org/personal/main.org" ;; Main tasks
                              "~/Dropbox/org/personal/longtermcal.org" ;; Long time 
                              "~/Dropbox/org/personal/school.org" ;; School tasks
 			     "~/Dropbox/org/personal/longtermschool.org" ;; Long school
-                             "~/.emacs.d/orgModeTests/calendarFromKU.org" ;; Cal from Instructure Canvas
+;                             "~/.emacs.d/orgModeTests/calendarFromKU.org" ;; Cal from Instructure Canvas
 			     "~/Dropbox/org/personal/birthdays.org"
-			     "~/org/flagged.org"
-			     ))
+;			     "~/org/flagged.org"
+			     "~/Dropbox/org/personal/instruktor.org"
+			     "~/Dropbox/org/personal/pcs_instruktor.org"))
 
 (setq org-todo-keywords
       '((sequence "TODO" "IN-PROGRESS" "|" "DONE" "CANCELLED")))
 ;; Mobile org
-(setq org-mobile-inbox-for-pull "~/org/flagged.org")
-(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
+;; (setq org-mobile-inbox-for-pull "~/org/flagged.org")
+;; (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
 
 
 ;; setup some variables for WDIRED
@@ -230,7 +229,7 @@
 ;; Setup el-py mode
 ;; ------------------------------
 ;; Sets up elpy
-(require 'setup-elpy)
+;; (require 'setup-elpy)
 
 
 
@@ -238,7 +237,7 @@
 ;; ------------------------------
 ;; Creates an html version with css of the current buffer
 ;; keeps formatting, syntax-highlighting etc.
-(require 'htmlize)
+;; (require 'htmlize)
 
 
 ;; Setup Markdown major mode
