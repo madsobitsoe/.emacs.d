@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: class
-# key: class
-# --
-Class.${1:classname}("$1")
-    ($2)
-    ($3);
-$0

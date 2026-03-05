@@ -1,269 +1,74 @@
-;; init.el
-;; ------------------------------
-;; Author: Mads Obitsø
-;; contains lot's of copied code
-
-;; Turn off mouse interface early in startup to avoid momentary display
+;; Turn off mouse interface
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
-;; Send the splash screen crying back to it's mother
+;; Don't show the splash screen
 (setq inhibit-startup-message t)
 
-;; Ask before killing emacs
+;; Ask nicely before exiting
 (setq confirm-kill-emacs 'y-or-n-p)
 
-;; Waste of bytes
-(setq initial-scratch-message 
-";; Welcome to your domain of evil
-;; The elisp is loose
+(setq initial-scratch-message
+      ";; All your bytes are belong to us
 ")
 
 ;; Straight to *scratch*
 (setq initial-buffer-choice t)
 
-;; Set path to dependencies
-(setq site-lisp-dir
-      (expand-file-name "site-lisp" user-emacs-directory))
-
-(setq my-setup-lisp
-      (expand-file-name "my-setup" user-emacs-directory))
-
-;; Set up load
-(add-to-list 'load-path my-setup-lisp)
-(add-to-list 'load-path site-lisp-dir)
-;; Make site-lisp-dir the package folder
-(setq package-user-dir "~/.emacs.d/site-lisp")
-
-
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-;(package-initialize)
-
-
-;; Setup packages
-(require 'setup-package)
-
-;; Are we on a mac?
+;; Is this a mac?
 (setq is-mac (equal system-type 'darwin))
 
+;; Turn off the bell
+(setq ring-bell-function #'ignore)
 
-;; Install extensions if they're missing
-(defun init--install-packages ()
-  (packages-install
-   '(undo-tree
-     ace-jump-mode
-     smex
-     highlight-escape-sequences
-     ;; shell-command
-     flx-ido
-     ido-vertical-mode
-     ido-at-point
-     ido-completing-read+
-     expand-region
-     multiple-cursors
-     auto-complete
-     yasnippet
-     markdown-mode
-     ;; helm
-     auctex
-     fsharp-mode
-     smart-mode-line
-     rainbow-delimiters
-     highlight-numbers
-     highlight-indent-guides
-     column-enforce-mode
-     )))
+;; Run as a daemon so client works
+(server-start)
+
+(defvar mads/load-path (file-name-directory (or load-file-name buffer-file-name))
+  "Path of emacs config")
+(when (not mads/load-path)
+  (error "Cannot determine configuration path of emacs config: both load-file-name and buffer-file-name are nil"))
 
 
-(condition-case nil
-    (init--install-packages)
-  (error
-   (package-refresh-contents)
-   (init--install-packages)))
-
-
-;; Keep emacs Custom-settings in separate file
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file)
+(defun mads/load (paths)
+  "Load files relative to this emacs config."
+  (when (not (listp paths))
+    (setq paths (list paths)))
+  (dolist (path paths)
+    (condition-case err
+	(load (expand-file-name path mads/load-path))
+      (error (message "Failed to load config sub-library at %S: %S" path err)))))
 
 
 
-;; Setup appearance early
-(require 'appearance)
+;; Load files for initialization
+(mads/load
+ '("./init/sane-defaults.el"
+   "./init/package.el"
+   "./init/keybindings.el"
+   "./init/appearance.el"
+   "./init/setup-org.el"
+   "./init/setup-vertico.el"
+   "./init/setup-marginalia.el"
+   "./init/setup-orderless.el"
+   "./init/setup-multiple-cursors.el"
+   "./init/setup-magit.el"
+   "./init/setup-corfu.el"
+   "./langs/setup-yaml.el"
+   "./langs/setup-markdown.el"
+   "./langs/setup-docker.el"
+   "./langs/setup-go.el"
+   "./langs/setup-terraform.el"
+   ))
 
-;; Add external projects to load path
-;;(dolist (project (directory-files site-lisp-dir t "\\w+"))
-;;  (when (file-directory-p project)
-;;    (add-to-list 'load-path project)))
-
-
-;; Setup smooth scrolling
-(require 'mouse)
-
-
-;; Setup my custom functions
-(require 'my-functions)
-
-;; setup custom keybindings
-(require 'keybindings)
-
-;; Write backup files to own directory
-;; Get's rid of ~file~
-(setq backup-directory-alist
-      `(("." . ,(expand-file-name
-		 (concat user-emacs-directory "backups")))))
-
-;; Make backups of files, even when they're in version control
-(setq vc-make-backup-files t)
-
-;; Set up saveplace
-(require 'saveplace)
-(setq-default save-place t)
-(setq save-place-file (expand-file-name ".places" user-emacs-directory))
-
-;; Start with sane defaults
-(require 'sane-defaults)
-
-;; If so, set some stuff
+;; If this is a mac, do some mac stuff
 (when is-mac
-  (require-package 'exec-path-from-shell)
-  (exec-path-from-shell-initialize)
-  (require 'mac))
+  (mads/load
+   '("./init/setup-mac.el")
+  ))
 
-
-;; Setup extensions
-;; (eval-after-load 'shell '(require 'setup-shell))
-
-;; Font lock dash.el
-(eval-after-load 'dash '(dash-enable-font-lock))
-
-;; Setup yasnippet
-(require 'setup-yasnippet)
-
-
-;; Setup ido
-(require 'setup-ido)
-;; Map files to modes
-(require 'mode-mappings)
-
-
-;; Setup smex - Smart M-x
-(require 'smex)
-(smex-initialize)
-
-;; Set up autocomplete
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/site-lisp/auto-complete-20140803.2118/dict")
-(ac-config-default)
-(global-auto-complete-mode t)
-
-
-;; Set up org
-(require 'org)
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(setq org-log-done t)
-(setq org-directory "~/Dropbox/org")
-(setq org-agenda-files (list "~/Dropbox/org/personal/main.org" ;; Main tasks
-                             "~/Dropbox/org/personal/longtermcal.org" ;; Long time 
-                             "~/Dropbox/org/personal/school.org" ;; School tasks
-			     "~/Dropbox/org/personal/longtermschool.org" ;; Long school
-;                             "~/.emacs.d/orgModeTests/calendarFromKU.org" ;; Cal from Instructure Canvas
-			     "~/Dropbox/org/personal/birthdays.org"
-;			     "~/org/flagged.org"
-			     "~/Dropbox/org/personal/instruktor.org"
-			     "~/Dropbox/org/personal/pcs_instruktor.org"))
-
-(setq org-todo-keywords
-      '((sequence "TODO" "IN-PROGRESS" "|" "DONE" "CANCELLED")))
-;; Mobile org
-;; (setq org-mobile-inbox-for-pull "~/org/flagged.org")
-;; (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
-
-
-;; setup some variables for WDIRED
-;; invoke with C-x C-q in any dired buffer
-;; edit stuff, commit with C-c C-C
-(setq wdired-use-interactive-rename t)
-(setq wdired-confirm-overwrite t)
-
-
-
-
-;; Setup latex
-(require 'setup-latex)
-
-
-;; Setup fsharp
-(require 'setup-fsharp)
-
-
-
-;; Setup python-mode
-;; ------------------------------
-;; 
-;; 
-
-;; (require 'python-mode)
-
-;; ;; use IPython
-;; (setq-default py-shell-name "ipython")
-;; (setq-default py-which-bufname "IPython")
-;; ; use the wx backend, for both mayavi and matplotlib
-;; (setq py-python-command-args
-;;   '("--gui=wx" "--pylab=wx" "-colors" "Linux"))
-;; (setq py-force-py-shell-name-p t)
-
-;; ; switch to the interpreter after executing code
-;; (setq py-shell-switch-buffers-on-execute-p t)
-;; (setq py-switch-buffers-on-execute-p t)
-;; ; don't split windows
-;; (setq py-split-windows-on-execute-p t)
-;; ; try to automagically figure out indentation
-;; (setq py-smart-indentation t)
-
-;; Setup el-py mode
-;; ------------------------------
-;; Sets up elpy
-;; (require 'setup-elpy)
-
-
-
-;; Setup htmlize
-;; ------------------------------
-;; Creates an html version with css of the current buffer
-;; keeps formatting, syntax-highlighting etc.
-;; (require 'htmlize)
-
-
-;; Setup Markdown major mode
-;; ------------------------------
-;; Major mode for editing markdown files
-;; 
-(require 'markdown-mode)
-
-;; Undo-tree
-;; ------------------------------
-(require 'undo-tree)
-(global-undo-tree-mode)
-
-;; Setup helm-spotify-custom
-;;(require 'helm-spotify-custom)
-
- 
-(require 'highlight-escape-sequences)
-(hes-mode)
-(put 'font-lock-regexp-grouping-backslash 'face-alias 'font-lock-builtin-face)
-
-(require 'expand-region)
-(require 'multiple-cursors)
-;(require 'latex-wc-mode)
-(require 'lwc-mode)
-
-;; Enable upcase and downcase region (C-x C-u & C-x C-l)
-(put 'downcase-region 'disabled nil)
-(put 'upcase-region 'disabled nil)
+;; Store Emacs custom settings in a separate file
+(setq custom-file (expand-file-name "custom.el" mads/load-path))
+(when (file-exists-p custom-file)
+  (load custom-file))
