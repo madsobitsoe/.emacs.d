@@ -23,7 +23,7 @@ Uses the built-in `package.el` with MELPA, and `use-package` (`:ensure t` by def
 | `sane-defaults.el` | UTF-8, line numbers, delete-selection, subword-mode, undo-tree, backup/tmp dirs |
 | `package.el` | MELPA + use-package configuration |
 | `keybindings.el` | Global keybindings (see below) |
-| `appearance.el` | doom-themes (`doom-one`), rainbow-delimiters |
+| `appearance.el` | doom-themes (available), catppuccin-theme (Frappe, default), rainbow-delimiters |
 | `setup-org.el` | org-mode with agenda (`~/org/main.org`, `~/org/hours.org`) |
 | `setup-vertico.el` | Vertico minibuffer completion + vertico-directory |
 | `setup-marginalia.el` | Marginalia annotations in minibuffer |
