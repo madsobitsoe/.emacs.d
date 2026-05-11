@@ -13,3 +13,7 @@
 
 (setq org-todo-keywords
       '((sequence "TODO" "IN-PROGRESS" "|" "DONE" "CANCELLED")))
+
+(setq org-agenda-custom-commands
+      '(("t" "All TODOs" alltodo ""
+         ((org-agenda-files '("~/org/main.org"))))))
