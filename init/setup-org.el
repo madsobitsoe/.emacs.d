@@ -9,6 +9,7 @@
 (setq org-agenda-files
       (list "~/org/main.org"
 	    "~/org/hours.org"
+	    "~/org/daily_tasks.org"
 	    ))
 
 (setq org-todo-keywords
@@ -16,4 +17,6 @@
 
 (setq org-agenda-custom-commands
       '(("t" "All TODOs" alltodo ""
-         ((org-agenda-files '("~/org/main.org"))))))
+         ((org-agenda-files '("~/org/main.org"
+			      "~/org/daily_tasks.org"
+			      ))))))
