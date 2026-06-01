@@ -59,6 +59,7 @@
    "./langs/setup-markdown.el"
    "./langs/setup-docker.el"
    "./langs/setup-go.el"
+   "./langs/setup-python.el"
    "./langs/setup-terraform.el"
    ))
 

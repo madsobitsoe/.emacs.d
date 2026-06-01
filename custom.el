@@ -6,7 +6,7 @@
  '(package-selected-packages
    '(catppuccin-theme corfu dockerfile-mode doom-themes
 		      exec-path-from-shell go-mode magit marginalia
-		      markdown-mode multiple-cursors orderless
+		      markdown-mode multiple-cursors orderless pet
 		      rainbow-delimiters terraform-mode undo-tree
 		      vertico yaml-mode)))
 (custom-set-faces
